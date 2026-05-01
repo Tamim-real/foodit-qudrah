@@ -1,6 +1,6 @@
 import React from 'react';
-import Text8 from '../assets/images/text-8.png'
-import FooterBadge from '../assets/images/footer-badge.png'
+import Text8 from '../assets/images/text-8.svg'
+import FooterBadge from '../assets/images/footer-badge.svg'
 
 
 const Footer = () => {
