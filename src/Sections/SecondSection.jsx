@@ -47,9 +47,9 @@ const SecondSection = () => {
                             </span>
                         </span>
 
-                        <span className="block text-white">
+                        <span className="block text-[#FFC945]">
                             আর এই সমস্যার সমাধান করা
-                            <span className="relative inline-block ml-1 px-2 py-0.5 font-bold">
+                            <span className="relative inline-block ml-1 px-2 py-0.5 text-[#FFC945]  font-bold">
                                 কঠিন বিষয় না।
                                 <span className="absolute bottom-0 left-0 w-full h-[6px] -z-10 rounded-full"></span>
                             </span>
