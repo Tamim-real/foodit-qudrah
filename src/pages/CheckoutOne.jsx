@@ -10,8 +10,8 @@ const CheckoutOne = () => {
   });
   const [toast, setToast] = useState({ show: false, message: "" });
   const [errors, setErrors] = useState({ phone: false });
-  
-  
+
+
   const [orderSuccess, setOrderSuccess] = useState(false);
 
   const productPrice = 1450;
@@ -57,7 +57,7 @@ const CheckoutOne = () => {
       return setToast({ show: true, message: "আপনার সম্পূর্ণ ঠিকানা লিখুন" });
     }
 
-    
+
     setOrderSuccess(true);
     console.log("Order Submitted:", { ...formData, total });
   };
@@ -75,7 +75,7 @@ const CheckoutOne = () => {
       {orderSuccess && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white w-full max-w-md rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300">
-            
+
             {/* Decorative Background Elements */}
             <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
@@ -91,16 +91,19 @@ const CheckoutOne = () => {
             </div>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">ধন্যবাদ!</h2>
-            <h3 className="text-xl font-semibold text-green-700 mb-4">আপনার অর্ডার রিসিভ করা হয়েছে</h3>
-            
-            <p className="text-gray-600 leading-relaxed mb-8">
-              অর্ডারটি কনফার্ম করার জন্য খুব শীঘ্রই আমাদের প্রতিনিধি আপনাকে কল করবেন। অনুগ্রহ করে কলটি রিসিভ করবেন।
-            </p>
+            <h3 className="text-xl font-semibold text-green-700 ">আপনার অর্ডার টি কনফার্ম করা হয়েছে।</h3>
 
-            <button 
+            <p className="text-gray-600 leading-relaxed ">
+              অর্ডার টি কুরিয়ারে বুকিং এর পূর্বে আমাদের ১জন প্রতিনিধি আপনাকে কল করবে। <br /> অনুগ্রহ করে কল টি রিসিভ করবেন।
+            </p><br />
+        
+            <p className="font-bold">FOODiT <br /> STAY HEALTHY</p>
+            
+
+            <button
               onClick={() => {
                 setOrderSuccess(false);
-                // ইচ্ছে করলে এখানে ফর্ম রিসেট করতে পারেন
+
                 setFormData({ name: "", phone: "", address: "" });
               }}
               className="w-full bg-green-800 hover:bg-green-900 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95"
@@ -152,9 +155,8 @@ const CheckoutOne = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="আপনার মোবাইল নাম্বার লিখুন"
-                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${
-                  errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
-                }`}
+                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
+                  }`}
               />
               <p className="text-xs text-red-500 mt-1">
                 মোবাইল নাম্বার লিখুন is required

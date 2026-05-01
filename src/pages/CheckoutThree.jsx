@@ -92,12 +92,13 @@ const CheckoutThree = () => {
             </div>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">ধন্যবাদ!</h2>
-            <h3 className="text-xl font-semibold text-green-700 mb-4">আপনার অর্ডার রিসিভ করা হয়েছে</h3>
-            
-            <p className="text-gray-600 leading-relaxed mb-8">
-              অর্ডারটি কনফার্ম করার জন্য খুব শীঘ্রই আমাদের প্রতিনিধি আপনাকে কল করবেন। অনুগ্রহ করে কলটি রিসিভ করবেন।
-            </p>
+            <h3 className="text-xl font-semibold text-green-700 ">আপনার অর্ডার টি কনফার্ম করা হয়েছে।</h3>
 
+            <p className="text-gray-600 leading-relaxed ">
+              অর্ডার টি কুরিয়ারে বুকিং এর পূর্বে আমাদের ১জন প্রতিনিধি আপনাকে কল করবে। <br /> অনুগ্রহ করে কল টি রিসিভ করবেন।
+            </p><br />
+        
+            <p className="font-bold">FOODiT <br /> STAY HEALTHY</p>
             <button 
               onClick={() => {
                 setOrderSuccess(false);
