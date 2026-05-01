@@ -34,28 +34,28 @@ const SecondSection = () => {
 
                 <img src={Text5} alt="text-5" />
                 <img src={Text6} alt="text-6" />
-                <div className=" px-6 py-3 bg-white border border-green-100 rounded-[32px] shadow-sm max-w-lg mx-auto">
-                    <p className="text-[19px] md:text-[21px]  text-slate-800 font-bold text-center">
-                        <span className="block  text-slate-600">
+
+                <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl w-80' />
+
+                <div className=" px-6 py-3  rounded-[32px] shadow-sm max-w-lg mx-auto">
+                    <p className="text-[19px] md:text-[21px]  text-white font-bold text-center">
+                        <span className="block  text-white">
                             বিবাহিত জীবনে এমন সমস্যা হওয়া
-                            <span className="relative inline-block ml-1 px-2 py-0.5 font-bold text-red-600">
+                            <span className="relative inline-block ml-1 px-2 py-0.5 font-bold">
                                 নতুন কিছু না।
-                                <span className="absolute bottom-0 left-0 w-full h-[6px] bg-red-100 -z-10 rounded-full"></span>
+                                <span className="absolute bottom-0 left-0 w-full h-[6px]  -z-10 rounded-full"></span>
                             </span>
                         </span>
 
-                        <span className="block text-slate-700">
+                        <span className="block text-white">
                             আর এই সমস্যার সমাধান করা
-                            <span className="relative inline-block ml-1 px-2 py-0.5 font-bold text-green-700">
+                            <span className="relative inline-block ml-1 px-2 py-0.5 font-bold">
                                 কঠিন বিষয় না।
-                                <span className="absolute bottom-0 left-0 w-full h-[6px] bg-green-100 -z-10 rounded-full"></span>
+                                <span className="absolute bottom-0 left-0 w-full h-[6px] -z-10 rounded-full"></span>
                             </span>
                         </span>
                     </p>
                 </div>
-                <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl w-80' />
-
-
                 <img src={Icons} className='w-[89%] max-w-[390px] h-auto' alt="icons" />
                 <img src={Text2} alt="" />
 
@@ -63,7 +63,7 @@ const SecondSection = () => {
                     to="product-section"
                     smooth={true}
                     duration={800}
-                    offset={-50}
+                    offset={20}
                 ><img
                         src={Button}
                         className="px-8 py-3 rounded-3xl bg-white cursor-pointer transition-all duration-300 active:scale-90 hover:scale-105 animate-popup"

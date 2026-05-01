@@ -175,7 +175,7 @@ const CheckoutOne = () => {
               <div className="flex justify-between items-center border-b pb-3">
                 <div className="flex items-center gap-2">
                   <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
-                  <span>QUDRAH ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম</span>
+                  <span>QUDRAH ন্যাচারাল হারবাল পাউডার - ২০০ গ্রাম</span>
                 </div>
                 <span>× 1 {productPrice}৳</span>
               </div>

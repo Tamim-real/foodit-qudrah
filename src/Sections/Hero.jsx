@@ -35,7 +35,7 @@ const Hero = () => {
           to="product-section" 
           smooth={true} 
           duration={800} 
-          offset={-50} 
+          offset={20} 
         >
           <img
             src={Button}
