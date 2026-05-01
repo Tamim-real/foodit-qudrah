@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import Qudraah100gm from '../assets/images/qudraah-100gm.webp';
 
 const CheckoutOne = () => {
-  const [delivery, setDelivery] = useState(120);
+
+  const [delivery, setDelivery] = useState(70); 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     address: "",
   });
   const [toast, setToast] = useState({ show: false, message: "" });
-  // এরর ট্র্যাকিং এর জন্য নতুন স্টেট
+
   const [errors, setErrors] = useState({ phone: false });
 
-  const productPrice = 550;
+  const productPrice = 1450;
   const total = productPrice + delivery;
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const CheckoutOne = () => {
       const numberValue = value.replace(/\D/g, "");
       if (numberValue.length <= 11) {
         setFormData({ ...formData, [name]: numberValue });
-        // টাইপ করার সময় এরর স্টেট রিমুভ করে দেওয়া
+        
         setErrors({ ...errors, phone: false });
       }
     } else {
@@ -47,7 +49,7 @@ const CheckoutOne = () => {
 
     const bdPhoneRegex = /^(013|014|015|016|017|018|019)\d{8}$/;
     if (!bdPhoneRegex.test(formData.phone)) {
-      setErrors({ ...errors, phone: true }); // ভ্যালিডেশন ফেইল করলে ট্রু হবে
+      setErrors({ ...errors, phone: true }); 
       return setToast({ show: true, message: "সঠিক ১১ ডিজিটের মোবাইল নাম্বার দিন" });
     }
 
@@ -55,7 +57,7 @@ const CheckoutOne = () => {
       return setToast({ show: true, message: "আপনার সম্পূর্ণ ঠিকানা লিখুন" });
     }
 
-    alert("অর্ডার সফল হয়েছে!");
+    alert("অর্ডার সফল হয়েছে!");
     console.log("Order Submitted:", { ...formData, total });
   };
 
@@ -96,7 +98,7 @@ const CheckoutOne = () => {
               />
             </div>
 
-            {/* Phone - এখানে কন্ডিশনাল ক্লাস ব্যবহার করা হয়েছে */}
+            {/* Phone */}
             <div className="mb-4">
               <label className={`block text-sm font-medium mb-1 ${errors.phone ? 'text-red-600' : 'text-gray-700'}`}>
                 মোবাইল নাম্বার লিখুন *
@@ -107,7 +109,6 @@ const CheckoutOne = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="আপনার মোবাইল নাম্বার লিখুন"
-                // যদি errors.phone ট্রু হয় তবে লাল বর্ডার হবে, নয়তো গ্রিন বর্ডার
                 className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${
                   errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
                 }`}
@@ -132,20 +133,20 @@ const CheckoutOne = () => {
               />
             </div>
 
-            {/* Delivery Section remains same... */}
+            {/* Delivery Section */}
             <div className="border rounded-md overflow-hidden mt-4">
               <label className="flex justify-between items-center px-4 py-3 border-b cursor-pointer">
                 <div>
                   <input
                     type="radio"
                     name="delivery_option"
-                    checked={delivery === 120}
-                    onChange={() => setDelivery(120)}
+                    checked={delivery === 130}
+                    onChange={() => setDelivery(130)}
                     className="mr-2"
                   />
                   ঢাকার বাহিরে:
                 </div>
-                <span>120৳</span>
+                <span>130৳</span>
               </label>
 
               <label className="flex justify-between items-center px-4 py-3 cursor-pointer">
@@ -153,22 +154,21 @@ const CheckoutOne = () => {
                   <input
                     type="radio"
                     name="delivery_option"
-                    checked={delivery === 60}
-                    onChange={() => setDelivery(60)}
+                    checked={delivery === 70}
+                    onChange={() => setDelivery(70)}
                     className="mr-2"
                   />
                   ঢাকার ভিতরে:
                 </div>
-                <span>60৳</span>
+                <span>70৳</span>
               </label>
             </div>
 
-            {/* Product info and Right Column logic continues as before... */}
             <h3 className="mt-8 font-bold text-lg">আপনার প্রোডাক্ট</h3>
             <div className="flex items-center justify-between bg-green-50 border mt-3 p-4 rounded">
               <div className="flex items-center gap-3">
-                <img src="https://via.placeholder.com/50" alt="" className="w-12 h-12" />
-                <p>ন্যাচারাল পিনাট বাটার ক্রিম × 1</p>
+                <img src={Qudraah100gm} alt="qudraah-100gm-jar" className="w-13 h-15" />
+                <p>Qudrah ন্যাচারাল হারবাল পাউডার - ১০০ গ্রাম × 1</p>
               </div>
               <span>{productPrice}৳</span>
             </div>
@@ -180,8 +180,8 @@ const CheckoutOne = () => {
             <div className="border rounded-md p-4">
               <div className="flex justify-between items-center border-b pb-3">
                 <div className="flex items-center gap-2">
-                  <img src="https://via.placeholder.com/40" className="w-10 h-10" alt="" />
-                  <span>ন্যাচারাল পিনাট বাটার ক্রিম</span>
+                  <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
+                  <span>Qudrah ন্যাচারাল হারবাল পাউডার - ১০০ গ্রাম</span>
                 </div>
                 <span>× 1 {productPrice}৳</span>
               </div>
@@ -201,7 +201,7 @@ const CheckoutOne = () => {
 
             <div className="bg-green-100 mt-6 p-4 rounded">
               <h3 className="font-semibold mb-2">ক্যাশ অন ডেলিভারি</h3>
-              <p className="text-sm bg-white p-2 rounded">পণ্য হাতে পেয়ে মূল্য পরিশোধ করুন</p>
+              <p className="text-sm bg-white p-2 rounded">পণ্য হাতে পেয়ে মূল্য পরিশোধ করুন</p>
             </div>
 
             <button type="submit" className="w-full mt-6 bg-green-800 hover:bg-green-900 transition-colors text-white py-3 rounded shadow text-lg font-semibold">

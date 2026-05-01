@@ -23,7 +23,7 @@ const SecondSection = () => {
             }}
         >
             {/* Content Layer */}
-            <div className="relative z-10 flex flex-col items-center pt-12 px-4 space-y-8 w-full">
+            <div className="relative z-10 flex flex-col items-center pt-12 px-4 space-y-4 w-full">
 
                 {/* Green Badge Image */}
                 <img
@@ -46,7 +46,7 @@ const SecondSection = () => {
 
                 <img src={Text5} alt="text-5" />
                 <img src={Text6} alt="text-6" />
-                <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl' />
+                <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl w-80' />
 
                 <style>
                     {`

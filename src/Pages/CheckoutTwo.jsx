@@ -1,201 +1,212 @@
-import React, { useState, useEffect } from 'react';
-import { ShoppingBag, User, Phone, MapPin, CheckCircle, AlertCircle, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Qudraah100gm from '../assets/images/qudraah-100gm.webp';
 
-const CheckoutTwo = () => {
-  const [deliveryCharge, setDeliveryCharge] = useState(60);
-  const [formData, setFormData] = useState({ name: '', phone: '', address: '' });
-  const [toast, setToast] = useState({ show: false, message: '' });
-  const productPrice = 1450;
+const CheckoutOne = () => {
+
+  const [delivery, setDelivery] = useState(70); 
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    address: "",
+  });
+  const [toast, setToast] = useState({ show: false, message: "" });
+
+  const [errors, setErrors] = useState({ phone: false });
+
+  const productPrice = 2550;
+  const total = productPrice + delivery;
 
   useEffect(() => {
     if (toast.show) {
-      const timer = setTimeout(() => setToast({ show: false, message: '' }), 3000);
+      const timer = setTimeout(() => {
+        setToast({ show: false, message: "" });
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [toast.show]);
 
-  const showToast = (msg) => setToast({ show: true, message: msg });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 
-  const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
-    if (value.length <= 11) setFormData({ ...formData, phone: value });
+    if (name === "phone") {
+      const numberValue = value.replace(/\D/g, "");
+      if (numberValue.length <= 11) {
+        setFormData({ ...formData, [name]: numberValue });
+        
+        setErrors({ ...errors, phone: false });
+      }
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { name, phone, address } = formData;
-    if (!name.trim()) return showToast("অনুগ্রহ করে আপনার নাম লিখুন");
+
+    if (!formData.name.trim()) {
+      return setToast({ show: true, message: "আপনার নাম লিখুন" });
+    }
+
     const bdPhoneRegex = /^(013|014|015|016|017|018|019)\d{8}$/;
-    if (!bdPhoneRegex.test(phone)) return showToast("সঠিক ফোন নম্বর দিন");
-    if (!address.trim()) return showToast("আপনার সম্পূর্ণ ঠিকানা লিখুন");
+    if (!bdPhoneRegex.test(formData.phone)) {
+      setErrors({ ...errors, phone: true }); 
+      return setToast({ show: true, message: "সঠিক ১১ ডিজিটের মোবাইল নাম্বার দিন" });
+    }
+
+    if (!formData.address.trim()) {
+      return setToast({ show: true, message: "আপনার সম্পূর্ণ ঠিকানা লিখুন" });
+    }
+
     alert("অর্ডার সফল হয়েছে!");
+    console.log("Order Submitted:", { ...formData, total });
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] py-8 md:py-16 px-4 font-bangla">
-      {/* Dynamic Toast */}
+    <div className="min-h-screen bg-gray-100 py-10 px-4 relative">
       {toast.show && (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[10000] bg-slate-900 text-white px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in zoom-in slide-in-from-top-4 duration-300">
-          <AlertCircle className="w-5 h-5 text-red-400" />
-          <span className="text-sm font-medium">{toast.message}</span>
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-red-600 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
+          {toast.message}
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto">
-        {/* Top Branding/Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
-            অর্ডারটি সম্পন্ন করুন
-          </h1>
-          <p className="text-slate-500 text-sm md:text-base flex items-center justify-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-green-600" /> আপনার নাম, নাম্বার ও ঠিকানা
+      <div className="max-w-5xl mx-auto border-2 border-green-800 rounded-xl p-6 bg-white shadow">
+        {/* Header */}
+        <div className="bg-green-800 text-white text-center py-4 rounded-md mb-8">
+          <h1 className="text-xl font-bold">অর্ডার কনফার্ম করতে</h1>
+          <p className="text-sm">
+            আপনার নাম, মোবাইল নাম্বার এবং সম্পূর্ণ ঠিকানা অর্ডার কনফার্ম করুন
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Left Side: Shipping Details */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-slate-200">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                  <User className="w-5 h-5 text-green-700" />
-                </div>
-                <h2 className="text-xl font-bold text-slate-800">বিলিং ইনফরমেশন</h2>
-              </div>
+        <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-10">
+          {/* LEFT */}
+          <div>
+            <h2 className="text-lg font-bold mb-4 text-green-800">বিলিং এড্রেস</h2>
 
-              <div className="grid grid-cols-1 gap-6">
-                {/* Input Name */}
-                <div className="group">
-                  <label className="block text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-1">
-                    আপনার নাম *
-                  </label>
-                  <input 
-                    type="text" 
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="আপনার নাম" 
-                    className="w-full px-5 py-4 rounded-xl border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 outline-none transition-all duration-200 bg-slate-50/50 focus:bg-white text-slate-700 placeholder:text-slate-400"
-                  />
-                </div>
-
-                {/* Input Phone */}
-                <div className="group">
-                  <label className="block text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-1">
-                    মোবাইল নাম্বার *
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-green-600 transition-colors" />
-                    <input 
-                      type="text" 
-                      value={formData.phone}
-                      onChange={handlePhoneChange}
-                      placeholder="017XXXXXXXX" 
-                      className="w-full pl-12 pr-5 py-4 rounded-xl border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 outline-none transition-all duration-200 bg-slate-50/50 focus:bg-white text-slate-700"
-                    />
-                  </div>
-                </div>
-
-                {/* Input Address */}
-                <div className="group">
-                  <label className="block text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-2 ml-1">
-                    সম্পূর্ণ ঠিকানা *
-                  </label>
-                  <div className="relative">
-                    <MapPin className="absolute left-4 top-4 w-5 h-5 text-slate-400 group-focus-within:text-green-600 transition-colors" />
-                    <textarea 
-                      rows="3"
-                      value={formData.address}
-                      onChange={(e) => setFormData({...formData, address: e.target.value})}
-                      placeholder="বাসা নং, রোড নং, গ্রাম, থানা ও জেলা" 
-                      className="w-full pl-12 pr-5 py-4 rounded-xl border border-slate-200 focus:border-green-500 focus:ring-4 focus:ring-green-500/10 outline-none transition-all duration-200 bg-slate-50/50 focus:bg-white text-slate-700 resize-none"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
+            {/* Name */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                আপনার নাম <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="আপনার নাম লিখুন"
+                className="w-full border border-green-700 rounded px-3 py-2 outline-none"
+              />
             </div>
 
-            {/* Delivery Charge Selection */}
-            <div className="bg-white p-6 md:p-8 rounded-[24px] shadow-sm border border-slate-200">
-              <h3 className="text-lg font-bold text-slate-800 mb-6">ডেলিভারি এলাকা</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <label className={`relative flex items-center justify-between p-4 rounded-2xl border-2 cursor-pointer transition-all ${deliveryCharge === 60 ? 'border-green-600 bg-green-50/50' : 'border-slate-100 hover:border-slate-200'}`}>
-                  <div className="flex items-center gap-3">
-                    <input type="radio" name="delivery" checked={deliveryCharge === 60} onChange={() => setDeliveryCharge(60)} className="w-5 h-5 accent-green-600" />
-                    <span className="font-semibold text-slate-700">ঢাকার ভিতরে</span>
-                  </div>
-                  <span className="font-bold text-green-700">৳ ৬০</span>
-                </label>
+            {/* Phone */}
+            <div className="mb-4">
+              <label className={`block text-sm font-medium mb-1 ${errors.phone ? 'text-red-600' : 'text-gray-700'}`}>
+                মোবাইল নাম্বার লিখুন *
+              </label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="আপনার মোবাইল নাম্বার লিখুন"
+                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${
+                  errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
+                }`}
+              />
+              <p className="text-xs text-red-500 mt-1">
+                মোবাইল নাম্বার লিখুন is required
+              </p>
+            </div>
 
-                <label className={`relative flex items-center justify-between p-4 rounded-2xl border-2 cursor-pointer transition-all ${deliveryCharge === 120 ? 'border-green-600 bg-green-50/50' : 'border-slate-100 hover:border-slate-200'}`}>
-                  <div className="flex items-center gap-3">
-                    <input type="radio" name="delivery" checked={deliveryCharge === 120} onChange={() => setDeliveryCharge(120)} className="w-5 h-5 accent-green-600" />
-                    <span className="font-semibold text-slate-700">ঢাকার বাহিরে</span>
-                  </div>
-                  <span className="font-bold text-green-700">৳ ১২০</span>
-                </label>
+            {/* Address */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                আপনার সম্পূর্ণ ঠিকানা লিখুন *
+              </label>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                placeholder="গ্রাম থানা ও জেলা সহ"
+                className="w-full border border-green-700 rounded px-3 py-2 outline-none"
+              />
+            </div>
+
+            {/* Delivery Section */}
+            <div className="border rounded-md overflow-hidden mt-4">
+              <label className="flex justify-between items-center px-4 py-3 border-b cursor-pointer">
+                <div>
+                  <input
+                    type="radio"
+                    name="delivery_option"
+                    checked={delivery === 130}
+                    onChange={() => setDelivery(130)}
+                    className="mr-2"
+                  />
+                  ঢাকার বাহিরে:
+                </div>
+                <span>130৳</span>
+              </label>
+
+              <label className="flex justify-between items-center px-4 py-3 cursor-pointer">
+                <div>
+                  <input
+                    type="radio"
+                    name="delivery_option"
+                    checked={delivery === 70}
+                    onChange={() => setDelivery(70)}
+                    className="mr-2"
+                  />
+                  ঢাকার ভিতরে:
+                </div>
+                <span>70৳</span>
+              </label>
+            </div>
+
+            <h3 className="mt-8 font-bold text-lg">আপনার প্রোডাক্ট</h3>
+            <div className="flex items-center justify-between bg-green-50 border mt-3 p-4 rounded">
+              <div className="flex items-center gap-3">
+                <img src={Qudraah100gm} alt="qudraah-100gm-jar" className="w-13 h-15" />
+                <p>Qudrah ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম × 1</p>
               </div>
+              <span>{productPrice}৳</span>
             </div>
           </div>
 
-          {/* Right Side: Order Summary Card */}
-          <div className="lg:col-span-5 sticky top-8">
-            <div className="bg-slate-900 rounded-[32px] p-6 md:p-8 text-white shadow-2xl shadow-slate-200 overflow-hidden relative">
-              {/* Subtle background pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              
-              <div className="flex items-center gap-3 mb-8">
-                <ShoppingBag className="w-6 h-6 text-green-400" />
-                <h2 className="text-xl font-bold">অর্ডার সামারি</h2>
+          {/* RIGHT COLUMN */}
+          <div>
+            <h2 className="text-lg font-bold mb-4 text-green-800">আপনার অর্ডার</h2>
+            <div className="border rounded-md p-4">
+              <div className="flex justify-between items-center border-b pb-3">
+                <div className="flex items-center gap-2">
+                  <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
+                  <span>Qudrah ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম</span>
+                </div>
+                <span>× 1 {productPrice}৳</span>
               </div>
-
-              {/* Product Item Card */}
-              <div className="bg-slate-800/50 rounded-2xl p-4 mb-8 border border-slate-700 flex items-center gap-4">
-                <div className="w-20 h-20 bg-white rounded-xl p-1 flex-shrink-0">
-                  <img src="https://via.placeholder.com/150" alt="Product" className="w-full h-full object-cover rounded-lg" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-[15px] leading-tight mb-1">Qudrah হারবাল পাউডার ১০০ গ্রাম</h3>
-                  <p className="text-slate-400 text-sm font-medium">পরিমাণ: ১ টি</p>
-                  <p className="text-green-400 font-bold mt-1">৳ ১৪৫০</p>
-                </div>
+              <div className="flex justify-between mt-3">
+                <span>Subtotal</span>
+                <span>{productPrice}৳</span>
               </div>
-
-              {/* Calculation */}
-              <div className="space-y-4 mb-8">
-                <div className="flex justify-between text-slate-400 font-medium">
-                  <span>সাবটোটাল</span>
-                  <span className="text-white">৳ {productPrice}</span>
-                </div>
-                <div className="flex justify-between text-slate-400 font-medium">
-                  <span>ডেলিভারি চার্জ</span>
-                  <span className="text-white">৳ {deliveryCharge}</span>
-                </div>
-                <div className="h-px bg-slate-700 my-2"></div>
-                <div className="flex justify-between items-end">
-                  <div className="text-slate-400 font-medium">সর্বমোট মূল্য</div>
-                  <div className="text-3xl font-black text-green-400">৳ {productPrice + deliveryCharge}</div>
-                </div>
+              <div className="flex justify-between mt-1 text-sm text-gray-600">
+                <span>Delivery Charge</span>
+                <span>{delivery}৳</span>
               </div>
-
-              {/* Payment Method Badge */}
-              <div className="flex items-center gap-3 bg-white/5 rounded-2xl p-4 mb-8 border border-white/10">
-                <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-green-400" />
-                </div>
-                <p className="text-sm font-medium text-slate-200 leading-tight">
-                   পণ্য হাতে পেয়ে টাকা পরিশোধ করুন
-                </p>
+              <div className="flex justify-between mt-2 border-t pt-2 font-bold text-lg text-green-900">
+                <span>Total</span>
+                <span>{total}৳</span>
               </div>
-
-              {/* Submit Button */}
-              <button 
-                type="submit" 
-                className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-5 rounded-2xl shadow-xl shadow-green-900/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-lg"
-              >
-                অর্ডার কনফার্ম করুন
-              </button>
             </div>
+
+            <div className="bg-green-100 mt-6 p-4 rounded">
+              <h3 className="font-semibold mb-2">ক্যাশ অন ডেলিভারি</h3>
+              <p className="text-sm bg-white p-2 rounded">পণ্য হাতে পেয়ে মূল্য পরিশোধ করুন</p>
+            </div>
+
+            <button type="submit" className="w-full mt-6 bg-green-800 hover:bg-green-900 transition-colors text-white py-3 rounded shadow text-lg font-semibold">
+              অর্ডার কনফার্ম করুন {total}৳
+            </button>
           </div>
         </form>
       </div>
@@ -203,4 +214,4 @@ const CheckoutTwo = () => {
   );
 };
 
-export default CheckoutTwo;
+export default CheckoutOne;
