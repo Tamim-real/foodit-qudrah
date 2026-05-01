@@ -1,0 +1,17 @@
+import React from 'react';
+// Image-er path-ti apnar folder structure onujayi check kore niben
+import Banner from '../assets/images/banner.jpg'
+
+const HeroBanner = () => {
+  return (
+    <div className="relative z-20 w-[340px] h-[178px] bg-[#D9D9D9] rounded-[25px] mx-auto shadow-2xl flex items-center justify-center overflow-hidden">
+      {/* <img 
+        src={Banner}
+        alt="Hero Banner" 
+        className="w-full h-full object-cover" 
+      /> */}
+    </div>
+  );
+};
+
+export default HeroBanner;
