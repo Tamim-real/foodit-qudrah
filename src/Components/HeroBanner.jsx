@@ -1,5 +1,4 @@
 import React from 'react';
-// Image-er path-ti apnar folder structure onujayi check kore niben
 import Banner from '../assets/images/hero-banner.webp'
 
 const HeroBanner = () => {

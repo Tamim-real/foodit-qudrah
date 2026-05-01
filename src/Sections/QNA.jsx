@@ -3,7 +3,7 @@ import bgImage from '../assets/images/bg-mobile-3.webp';
 
 
 const QNA = () => {
-    // State to manage which FAQ is open
+    
     const [activeIndex, setActiveIndex] = useState(null);
 
     const faqData = [
@@ -69,7 +69,7 @@ const QNA = () => {
                     </h1>
                 </div>
 
-                {/* FAQ Accordion */}
+                {/* FAQ */}
                 <div className="w-full space-y-4 ">
                     {faqData.map((item, index) => (
                         <div key={index} className="border border-yellow-600/30 rounded-lg overflow-hidden bg-black/40 backdrop-blur-sm">

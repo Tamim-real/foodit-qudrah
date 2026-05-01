@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-scroll'; // react-scroll ইমপোর্ট করুন
+import { Link } from 'react-scroll'; 
 import bgImage from '../assets/images/bg-mobile-1.webp';
 import logo from '../assets/images/Logo.png';
 import badge from '../assets/images/natural-badge.png';

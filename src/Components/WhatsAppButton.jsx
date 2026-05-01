@@ -2,7 +2,7 @@ import React from 'react';
 
 const WhatsAppButton = () => {
   const phoneNumber = "8801767475353"; 
-  const message = "QUDRAH খেলে কি সমস্যার স্থায়ী সমাধান হবে ?";
+  const message = "QUDRAH পাউডারের বিষয়ে কথা বলতে চাচ্ছি...";
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
