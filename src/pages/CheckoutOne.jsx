@@ -3,7 +3,7 @@ import Qudraah100gm from '../assets/images/qudraah-100gm.webp';
 
 const CheckoutOne = () => {
 
-  const [delivery, setDelivery] = useState(70); 
+  const [delivery, setDelivery] = useState(70);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -13,7 +13,7 @@ const CheckoutOne = () => {
 
   const [errors, setErrors] = useState({ phone: false });
 
-  const productPrice = 2550;
+  const productPrice = 1450;
   const total = productPrice + delivery;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const CheckoutOne = () => {
       const numberValue = value.replace(/\D/g, "");
       if (numberValue.length <= 11) {
         setFormData({ ...formData, [name]: numberValue });
-        
+
         setErrors({ ...errors, phone: false });
       }
     } else {
@@ -49,7 +49,7 @@ const CheckoutOne = () => {
 
     const bdPhoneRegex = /^(013|014|015|016|017|018|019)\d{8}$/;
     if (!bdPhoneRegex.test(formData.phone)) {
-      setErrors({ ...errors, phone: true }); 
+      setErrors({ ...errors, phone: true });
       return setToast({ show: true, message: "সঠিক ১১ ডিজিটের মোবাইল নাম্বার দিন" });
     }
 
@@ -71,10 +71,11 @@ const CheckoutOne = () => {
 
       <div className="max-w-5xl mx-auto border-2 border-green-800 rounded-xl p-6 bg-white shadow">
         {/* Header */}
-        <div className="bg-green-800 text-white text-center py-4 rounded-md mb-8">
+        <div className="bg-green-800 text-white text-center py-4 rounded-md mb-3">
           <h1 className="text-xl font-bold">অর্ডার কনফার্ম করতে</h1>
-          <p className="text-sm">
-            আপনার নাম, মোবাইল নাম্বার এবং সম্পূর্ণ ঠিকানা অর্ডার কনফার্ম করুন
+          <p className="text-sm leading-relaxed">
+            আপনার নাম, মোবাইল নাম্বার <br />
+            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
           </p>
         </div>
 
@@ -109,9 +110,8 @@ const CheckoutOne = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="আপনার মোবাইল নাম্বার লিখুন"
-                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${
-                  errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
-                }`}
+                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
+                  }`}
               />
               <p className="text-xs text-red-500 mt-1">
                 মোবাইল নাম্বার লিখুন is required
@@ -163,15 +163,8 @@ const CheckoutOne = () => {
                 <span>70৳</span>
               </label>
             </div>
-
-            <h3 className="mt-8 font-bold text-lg">আপনার প্রোডাক্ট</h3>
-            <div className="flex items-center justify-between bg-green-50 border mt-3 p-4 rounded">
-              <div className="flex items-center gap-3">
-                <img src={Qudraah100gm} alt="qudraah-100gm-jar" className="w-13 h-15" />
-                <p>Qudrah ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম × 1</p>
-              </div>
-              <span>{productPrice}৳</span>
-            </div>
+                 
+            
           </div>
 
           {/* RIGHT COLUMN */}
@@ -181,7 +174,7 @@ const CheckoutOne = () => {
               <div className="flex justify-between items-center border-b pb-3">
                 <div className="flex items-center gap-2">
                   <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
-                  <span>Qudrah ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম</span>
+                  <span>QUDRAH ন্যাচারাল হারবাল পাউডার - ১০০ গ্রাম</span>
                 </div>
                 <span>× 1 {productPrice}৳</span>
               </div>

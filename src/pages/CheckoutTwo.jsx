@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Qudraah100gm from '../assets/images/qudrah-three-jar.webp';
+import Qudraah100gm from '../assets/images/qudraah-100gm.webp';
 
 const CheckoutOne = () => {
 
@@ -13,7 +13,7 @@ const CheckoutOne = () => {
 
   const [errors, setErrors] = useState({ phone: false });
 
-  const productPrice = 7950;
+  const productPrice = 2550;
   const total = productPrice + delivery;
 
   useEffect(() => {
@@ -73,8 +73,9 @@ const CheckoutOne = () => {
         {/* Header */}
         <div className="bg-green-800 text-white text-center py-4 rounded-md mb-8">
           <h1 className="text-xl font-bold">অর্ডার কনফার্ম করতে</h1>
-          <p className="text-sm">
-            আপনার নাম, মোবাইল নাম্বার এবং সম্পূর্ণ ঠিকানা অর্ডার কনফার্ম করুন
+           <p className="text-sm leading-relaxed">
+            আপনার নাম, মোবাইল নাম্বার <br />
+            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
           </p>
         </div>
 
@@ -114,7 +115,7 @@ const CheckoutOne = () => {
                 }`}
               />
               <p className="text-xs text-red-500 mt-1">
-                মোবাইল নাম্বার is required
+                মোবাইল নাম্বার লিখুন is required
               </p>
             </div>
 
@@ -164,14 +165,7 @@ const CheckoutOne = () => {
               </label>
             </div>
 
-            <h3 className="mt-8 font-bold text-lg">আপনার প্রোডাক্ট</h3>
-            <div className="flex items-center justify-between bg-green-50 border mt-3 p-4 rounded">
-              <div className="flex items-center gap-3">
-                <img src={Qudraah100gm} alt="qudraah-100gm-jar" className="w-18 h-15" />
-                <p>Qudrah ন্যাচারাল হারবাল পাউডার - ৬০০ গ্রাম × 1</p>
-              </div>
-              <span>{productPrice}৳</span>
-            </div>
+           
           </div>
 
           {/* RIGHT COLUMN */}
@@ -180,8 +174,8 @@ const CheckoutOne = () => {
             <div className="border rounded-md p-4">
               <div className="flex justify-between items-center border-b pb-3">
                 <div className="flex items-center gap-2">
-                  <img src={Qudraah100gm} className="w-18 h-15" alt="qudraah-100gm-jar" />
-                  <span>Qudrah ন্যাচারাল হারবাল পাউডার - ৬০০ গ্রাম</span>
+                  <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
+                  <span>QUDRAH ন্যাচারাল হারবাল পাউডার - 2০০ গ্রাম</span>
                 </div>
                 <span>× 1 {productPrice}৳</span>
               </div>

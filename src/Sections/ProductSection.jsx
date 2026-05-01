@@ -7,7 +7,7 @@ import Card3 from '../assets/images/product-3.svg';
 
 const ProductSection = () => {
   return (
-    <section className="bg-white min-h-screen w-full flex flex-col items-center py-10 px-4">
+    <section className="bg-white min-h-screen w-full flex flex-col items-center py-10 px-4" id="product-section">
       
       {/* 1. Top Logo & Title Image */}
       <div className="mb-12">
