@@ -9,10 +9,29 @@ const CallSection = () => {
                 {/* টেক্সট ইমেজ */}
                 <img src={Text7} alt="text-7" className="w-full max-w-md" />
 
-                {/* কল বাটন */}
-                <a href="tel:09617475353" className="transition-transform hover:scale-105">
-                    <img src={CallerBtn} alt="call-btn" />
+                
+                <a href="tel:09617475353" className="block transition-transform duration-300 hover:scale-110 active:scale-90">
+                    <img 
+                        src={CallerBtn} 
+                        alt="call-btn" 
+                        className="animate-popup-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
+                    />
                 </a>
+
+                
+                <style jsx>{`
+                    @keyframes popup-pulse {
+                        0%, 100% {
+                            transform: scale(1);
+                        }
+                        50% {
+                            transform: scale(1.15);
+                        }
+                    }
+                    .animate-popup-pulse {
+                        animation: popup-pulse 1.5s ease-in-out infinite;
+                    }
+                `}</style>
             </div>
         </div>
     );

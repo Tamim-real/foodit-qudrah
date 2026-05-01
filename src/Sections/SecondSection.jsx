@@ -37,7 +37,7 @@ const SecondSection = () => {
 
                 <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl w-80' />
 
-                <div className=" px-6 py-3  rounded-[32px] shadow-sm max-w-lg mx-auto">
+                <div className="   rounded-[32px] shadow-sm max-w-lg mx-auto">
                     <p className="text-[19px] md:text-[21px]  text-white font-bold text-center">
                         <span className="block  text-white">
                             বিবাহিত জীবনে এমন সমস্যা হওয়া
