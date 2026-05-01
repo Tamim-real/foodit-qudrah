@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Qudraah100gm from '../assets/images/qudraah-100gm.webp';
 
 const CheckoutOne = () => {
-
   const [delivery, setDelivery] = useState(70);
   const [formData, setFormData] = useState({
     name: "",
@@ -10,8 +9,10 @@ const CheckoutOne = () => {
     address: "",
   });
   const [toast, setToast] = useState({ show: false, message: "" });
-
   const [errors, setErrors] = useState({ phone: false });
+  
+  
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const productPrice = 1450;
   const total = productPrice + delivery;
@@ -32,7 +33,6 @@ const CheckoutOne = () => {
       const numberValue = value.replace(/\D/g, "");
       if (numberValue.length <= 11) {
         setFormData({ ...formData, [name]: numberValue });
-
         setErrors({ ...errors, phone: false });
       }
     } else {
@@ -57,15 +57,57 @@ const CheckoutOne = () => {
       return setToast({ show: true, message: "আপনার সম্পূর্ণ ঠিকানা লিখুন" });
     }
 
-    alert("অর্ডার সফল হয়েছে!");
+    
+    setOrderSuccess(true);
     console.log("Order Submitted:", { ...formData, total });
   };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 relative">
+      {/* Toast Notification */}
       {toast.show && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-red-600 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[110] bg-red-600 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
           {toast.message}
+        </div>
+      )}
+
+      {/* --- Success Popup --- */}
+      {orderSuccess && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white w-full max-w-md rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300">
+            
+            {/* Decorative Background Elements */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
+
+            {/* Success Icon Animation */}
+            <div className="relative mb-6">
+              <div className="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center animate-bounce">
+                <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 border-4 border-green-500 rounded-full animate-ping opacity-20"></div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">ধন্যবাদ!</h2>
+            <h3 className="text-xl font-semibold text-green-700 mb-4">আপনার অর্ডার রিসিভ করা হয়েছে</h3>
+            
+            <p className="text-gray-600 leading-relaxed mb-8">
+              অর্ডারটি কনফার্ম করার জন্য খুব শীঘ্রই আমাদের প্রতিনিধি আপনাকে কল করবেন। অনুগ্রহ করে কলটি রিসিভ করবেন।
+            </p>
+
+            <button 
+              onClick={() => {
+                setOrderSuccess(false);
+                // ইচ্ছে করলে এখানে ফর্ম রিসেট করতে পারেন
+                setFormData({ name: "", phone: "", address: "" });
+              }}
+              className="w-full bg-green-800 hover:bg-green-900 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95"
+            >
+              ঠিক আছে
+            </button>
+          </div>
         </div>
       )}
 
@@ -75,7 +117,7 @@ const CheckoutOne = () => {
           <h1 className="text-xl font-bold">অর্ডার কনফার্ম করতে</h1>
           <p className="text-sm leading-relaxed">
             আপনার নাম, মোবাইল নাম্বার <br />
-            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
+            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
           </p>
         </div>
 
@@ -110,8 +152,9 @@ const CheckoutOne = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="আপনার মোবাইল নাম্বার লিখুন"
-                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
-                  }`}
+                className={`w-full border-2 rounded px-3 py-2 outline-none transition-colors ${
+                  errors.phone ? "border-red-500 bg-red-50" : "border-green-700"
+                }`}
               />
               <p className="text-xs text-red-500 mt-1">
                 মোবাইল নাম্বার লিখুন is required
@@ -146,7 +189,7 @@ const CheckoutOne = () => {
                   />
                   ঢাকার বাহিরে:
                 </div>
-                <span>130৳</span>
+                <span>৳ 130</span>
               </label>
 
               <label className="flex justify-between items-center px-4 py-3 cursor-pointer">
@@ -160,11 +203,9 @@ const CheckoutOne = () => {
                   />
                   ঢাকার ভিতরে:
                 </div>
-                <span>70৳</span>
+                <span>৳ 70</span>
               </label>
             </div>
-                 
-            
           </div>
 
           {/* RIGHT COLUMN */}
@@ -176,19 +217,19 @@ const CheckoutOne = () => {
                   <img src={Qudraah100gm} className="w-12 h-15" alt="qudraah-100gm-jar" />
                   <span>QUDRAH ন্যাচারাল হারবাল পাউডার - ১০০ গ্রাম</span>
                 </div>
-                <span>× 1 {productPrice}৳</span>
+                <span>× 1 ৳ {productPrice}</span>
               </div>
               <div className="flex justify-between mt-3">
                 <span>Subtotal</span>
-                <span>{productPrice}৳</span>
+                <span>৳ {productPrice}</span>
               </div>
               <div className="flex justify-between mt-1 text-sm text-gray-600">
                 <span>Delivery Charge</span>
-                <span>{delivery}৳</span>
+                <span>৳ {delivery}</span>
               </div>
               <div className="flex justify-between mt-2 border-t pt-2 font-bold text-lg text-green-900">
                 <span>Total</span>
-                <span>{total}৳</span>
+                <span>৳ {total}</span>
               </div>
             </div>
 
@@ -198,7 +239,7 @@ const CheckoutOne = () => {
             </div>
 
             <button type="submit" className="w-full mt-6 bg-green-800 hover:bg-green-900 transition-colors text-white py-3 rounded shadow text-lg font-semibold">
-              অর্ডার কনফার্ম করুন {total}৳
+              অর্ডার কনফার্ম করুন ৳ {total}
             </button>
           </div>
         </form>

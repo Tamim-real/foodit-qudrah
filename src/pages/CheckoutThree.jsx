@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Qudraah100gm from '../assets/images/qudrah-three-jar.webp';
 
-const CheckoutOne = () => {
+const CheckoutThree = () => {
 
   const [delivery, setDelivery] = useState(70); 
   const [formData, setFormData] = useState({
@@ -10,8 +10,10 @@ const CheckoutOne = () => {
     address: "",
   });
   const [toast, setToast] = useState({ show: false, message: "" });
-
   const [errors, setErrors] = useState({ phone: false });
+
+  
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const productPrice = 7950;
   const total = productPrice + delivery;
@@ -32,7 +34,6 @@ const CheckoutOne = () => {
       const numberValue = value.replace(/\D/g, "");
       if (numberValue.length <= 11) {
         setFormData({ ...formData, [name]: numberValue });
-        
         setErrors({ ...errors, phone: false });
       }
     } else {
@@ -57,15 +58,56 @@ const CheckoutOne = () => {
       return setToast({ show: true, message: "আপনার সম্পূর্ণ ঠিকানা লিখুন" });
     }
 
-    alert("অর্ডার সফল হয়েছে!");
+    
+    setOrderSuccess(true);
     console.log("Order Submitted:", { ...formData, total });
   };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 relative">
+      {/* Toast Notification */}
       {toast.show && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-red-600 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[110] bg-red-600 text-white px-6 py-3 rounded-lg shadow-2xl animate-bounce">
           {toast.message}
+        </div>
+      )}
+
+      {/* --- Success Popup --- */}
+      {orderSuccess && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-white w-full max-w-md rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-300">
+            
+            {/* Decorative Background Elements */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-green-100 rounded-full blur-3xl"></div>
+
+            {/* Success Icon Animation */}
+            <div className="relative mb-6">
+              <div className="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center animate-bounce">
+                <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 border-4 border-green-500 rounded-full animate-ping opacity-20"></div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">ধন্যবাদ!</h2>
+            <h3 className="text-xl font-semibold text-green-700 mb-4">আপনার অর্ডার রিসিভ করা হয়েছে</h3>
+            
+            <p className="text-gray-600 leading-relaxed mb-8">
+              অর্ডারটি কনফার্ম করার জন্য খুব শীঘ্রই আমাদের প্রতিনিধি আপনাকে কল করবেন। অনুগ্রহ করে কলটি রিসিভ করবেন।
+            </p>
+
+            <button 
+              onClick={() => {
+                setOrderSuccess(false);
+                setFormData({ name: "", phone: "", address: "" });
+              }}
+              className="w-full bg-green-800 hover:bg-green-900 text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95"
+            >
+              ঠিক আছে
+            </button>
+          </div>
         </div>
       )}
 
@@ -75,7 +117,7 @@ const CheckoutOne = () => {
           <h1 className="text-xl font-bold">অর্ডার কনফার্ম করতে</h1>
            <p className="text-sm leading-relaxed">
             আপনার নাম, মোবাইল নাম্বার <br />
-            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
+            সম্পূর্ণ ঠিকানা দিয়ে অর্ডার কনফার্ম করুন
           </p>
         </div>
 
@@ -164,8 +206,6 @@ const CheckoutOne = () => {
                 <span>70৳</span>
               </label>
             </div>
-
-            
           </div>
 
           {/* RIGHT COLUMN */}
@@ -175,7 +215,7 @@ const CheckoutOne = () => {
               <div className="flex justify-between items-center border-b pb-3">
                 <div className="flex items-center gap-2">
                   <img src={Qudraah100gm} className="w-18 h-15" alt="qudraah-100gm-jar" />
-                  <span>QUDRAH ন্যাচারাল হারবাল পাউডার - ৬০০ গ্রাম</span>
+                  <span>QUDRAH ন্যাচারাল herbal পাউডার - ৬০০ গ্রাম</span>
                 </div>
                 <span>× 1 {productPrice}৳</span>
               </div>
@@ -208,4 +248,4 @@ const CheckoutOne = () => {
   );
 };
 
-export default CheckoutOne;
+export default CheckoutThree;
