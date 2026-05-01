@@ -1,5 +1,6 @@
 import React from 'react';
 import bgImage from '../assets/images/bg-mobile-2.webp';
+import QudraahImg from '../assets/images/qudrah-img.webp';
 import greenBadge from '../assets/images/badge-2.webp';
 import Text3 from '../assets/images/text-3.svg';
 import Text4 from '../assets/images/text-4.svg';
@@ -45,6 +46,7 @@ const SecondSection = () => {
 
                 <img src={Text5} alt="text-5" />
                 <img src={Text6} alt="text-6" />
+                <img src={QudraahImg} alt="qudraah-img" className='rounded-4xl' />
 
                 <style>
                     {`

@@ -6,7 +6,7 @@ import ProductSection from './Sections/ProductSection'
 import QNA from './Sections/QNA'
 import SecondSection from './Sections/SecondSection'
 import WhatsAppButton from './Components/WhatsAppButton' 
-import CheckoutPageOne from './Pages/CheckoutPageOne'
+
 
 function App() {
   return (
@@ -17,9 +17,6 @@ function App() {
       <QNA />
       <CallSection />
       <Footer />
-      <CheckoutPageOne />
-      
-      
       <WhatsAppButton />
     </>
   )

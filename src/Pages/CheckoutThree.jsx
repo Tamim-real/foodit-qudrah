@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, User, Phone, MapPin, CheckCircle, AlertCircle, ShieldCheck } from 'lucide-react';
 
-const CheckoutPageOne = () => {
+const CheckoutThree = () => {
   const [deliveryCharge, setDeliveryCharge] = useState(60);
   const [formData, setFormData] = useState({ name: '', phone: '', address: '' });
   const [toast, setToast] = useState({ show: false, message: '' });
@@ -203,4 +203,4 @@ const CheckoutPageOne = () => {
   );
 };
 
-export default CheckoutPageOne;
+export default CheckoutThree;
