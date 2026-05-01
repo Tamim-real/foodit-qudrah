@@ -1,5 +1,5 @@
 import React from 'react';
-import CallerBtn from '../assets/images/caller-btn.png'
+import CallerBtn from '../assets/images/caller-btn.svg'
 import Text7 from '../assets/images/text-7.svg'
 
 const CallSection = () => {
