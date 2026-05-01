@@ -8,6 +8,7 @@ import Text6 from '../assets/images/text-6.svg';
 
 import Icons from '../assets/images/icons.svg';
 import Button from '../assets/images/btn-2.svg'
+import { Link } from 'react-scroll';
 
 const SecondSection = () => {
     return (
@@ -58,13 +59,18 @@ const SecondSection = () => {
                 <img src={Icons} className='w-[89%] max-w-[390px] h-auto' alt="icons" />
                 <img src={Text2} alt="" />
 
+                <Link
+                    to="product-section"
+                    smooth={true}
+                    duration={800}
+                    offset={-50}
+                ><img
+                        src={Button}
+                        className="px-8 py-3 rounded-3xl bg-white cursor-pointer transition-all duration-300 active:scale-90 hover:scale-105 animate-popup"
+                        alt="order-button"
+                        onClick={() => console.log("Button Clicked!")}
+                    /></Link>
 
-                <img
-                    src={Button}
-                    className="px-8 py-3 rounded-3xl bg-white cursor-pointer transition-all duration-300 active:scale-90 hover:scale-105 animate-popup"
-                    alt="order-button"
-                    onClick={() => console.log("Button Clicked!")}
-                />
 
 
 
