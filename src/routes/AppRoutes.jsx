@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import App from '../App'; // Home Page হিসেবে App.jsx ব্যবহার হচ্ছে
+import App from '../App.jsx'; 
 import CheckoutOne from '../pages/CheckoutOne.jsx';
 import CheckoutTwo from '../pages/CheckoutTwo.jsx';
 import CheckoutThree from '../pages/CheckoutThree.jsx';
-
 const AppRoutes = () => {
   return (
     <Routes>
